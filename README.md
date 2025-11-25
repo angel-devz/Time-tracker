@@ -101,11 +101,11 @@ CREATE TABLE time_logs (
 
 ## 🔌 Database Configuration
 
-Open the file:
+File:
 
 `src/main/java/com/timetracker/dao/DBConnection.java`
 
-and update:
+Update:
 
 ```java
 private static final String URL = "jdbc:mysql://localhost:3306/timetracker";
@@ -117,15 +117,15 @@ private static final String PASSWORD = "yourpassword";
 
 ## ▶️ How to Run the Project
 
-### 1️⃣ Install Required Software
+### 1️⃣ Install Software
 
 * Java JDK
 * Maven
-* MySQL Server
+* MySQL
 * Apache Tomcat
 * VS Code or IntelliJ IDEA
 
-### 2️⃣ Import the Project
+### 2️⃣ Import Project
 
 * Open the folder `TimeTracker/` in your IDE
 
@@ -135,11 +135,11 @@ private static final String PASSWORD = "yourpassword";
 mvn clean install
 ```
 
-### 4️⃣ Deploy
+### 4️⃣ Deploy and Start
 
-* Copy the generated WAR file into `tomcat/webapps`
-* Start Apache Tomcat
-* Open browser:
+* Copy the generated WAR file to `tomcat/webapps`
+* Start Tomcat
+* Visit:
 
 ```
 http://localhost:8080/TimeTracker/
@@ -147,27 +147,87 @@ http://localhost:8080/TimeTracker/
 
 ---
 
-## 🧪 Testing Instructions
+## 🚀 How to Use (Quick Start)
 
-* Login with test credentials
-* Add time logs
-* View dashboard
-* Check database tables for stored logs
+1. **Open the website**
+
+   ```
+   http://localhost:8080/TimeTracker/
+   ```
+
+2. **Login**
+
+   * Use a valid username and password from the `users` table.
+
+3. **Add Time Logs**
+
+   * Open the *Add Time Log* form.
+   * Enter:
+
+     * Task name
+     * Start time
+     * End time
+     * Notes (optional)
+   * Click **Submit**.
+
+4. **View Recorded Logs**
+
+   * Go to **View Logs**
+   * All entries will display in a table with:
+
+     * Date
+     * Task
+     * Hours
+     * Notes
+
+5. **Admin Access**
+
+   * Admin can:
+
+     * View all users
+     * View all logs
+
+6. **Verify Data in Database**
+
+   * Open MySQL
+
+   * Run:
+
+     ```sql
+     SELECT * FROM users;
+     SELECT * FROM time_logs;
+     ```
+
+   * All stored records will appear in the database.
+
+You can now successfully use the system without modifying any code.
 
 ---
 
-## 🛡 Security Notes
+## 🧪 Testing Instructions
+
+* Login
+* Add time logs
+* View dashboard
+* Confirm entries stored in MySQL
+
+---
+
+## 🔐 Security Notes
 
 * Use hashed passwords for production
 * HTTPS recommended
-* Basic input validation included
+* Basic validation included
 
 ---
 
 ## 📈 Future Enhancements
 
-* Edit/Delete time logs
+* Edit/Delete logs
+* Weekly reports
+* Export PDF/CSV
+* Analytics charts
 * Email reminders
-* Analytics dashboards
-* Export reports
-* UI modernization (React/Bootstrap/etc.)
+* UI redesign with modern frontend
+
+Just tell me!
