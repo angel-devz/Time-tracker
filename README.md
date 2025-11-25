@@ -200,8 +200,6 @@ http://localhost:8080/TimeTracker/
 
    * All stored records will appear in the database.
 
-You can now successfully use the system without modifying any code.
-
 ---
 
 ## 🧪 Testing Instructions
@@ -229,5 +227,3 @@ You can now successfully use the system without modifying any code.
 * Analytics charts
 * Email reminders
 * UI redesign with modern frontend
-
-Just tell me!
