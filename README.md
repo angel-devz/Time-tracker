@@ -1,108 +1,69 @@
-# Time-tracker
-The Time Tracker is a Java-based web application that helps users record work tasks, track time logs, monitor productivity, and manage daily time usage. The system supports user authentication, admin dashboard access, and CRUD operations for time logs. It is built using:
+# Time Tracker – Java Web Application
 
-Java (Servlets + JSP)
+## 📌 Overview
 
-MySQL Database
+The **Time Tracker** is a Java web application that helps users record tasks, track time logs, view productivity reports, and manage work hours. It includes user login, time logging, admin monitoring, and secure database storage. The system is built using Java Servlets and JSP with a MySQL database and Maven build process.
 
-Maven Build Tool
+---
 
-Apache Tomcat Server
+## 🎯 Features
 
-This project follows an industry-style layered architecture using DAO, Model, and Servlet components.
+### 👤 User Features
 
-🎯 Features
-👤 User Features
+* Login and Logout
+* Add new time logs
+* View daily time logs
+* Record start & end time
+* Store task notes
 
-Login & Logout
+### 🛠 Admin Features
 
-Add new time logs
+* View all users
+* Monitor all time logs
+* Manage system database
 
-View time logs
+### 🧱 System Features
 
-Track total hours worked daily
+* DAO pattern for database logic
+* Modular MVC-like structure
+* Session-based authentication
+* Fully working CRUD operations
 
-Add optional notes
+---
 
-🛠 Admin Features
+## 🗂 Project Directory Structure
 
-View all users
-
-Monitor all time logs
-
-Manage database records
-
-🧱 System Features
-
-DAO pattern for database interactions
-
-MVC-like project structure
-
-Secure authentication
-
-🗂 Project Directory Structure
+```
 TimeTracker/
-├── pom.xml
-├── README.md
-├── .gitignore
-├── database
-│   └── schema.sql
-├── src
-│   └── main
-│       ├── java
-│       │   └── com
-│       │       └── timetracker
-│       │           ├── dao
-│       │           │   ├── DBConnection.java
-│       │           │   ├── SystemConfigDAO.java
-│       │           │   ├── TimeLogDAO.java
-│       │           │   └── UserDAO.java
-│       │           ├── model
-│       │           │   ├── SystemConfig.java
-│       │           │   ├── TimeLog.java
-│       │           │   └── User.java
-│       │           ├── service
-│       │           │   ├── SystemConfigService.java
-│       │           │   ├── TimeLogService.java
-│       │           │   └── UserService.java
-│       │           ├── servlet
-│       │           │   ├── AdminDashboardServlet.java
-│       │           │   ├── LoginServlet.java
-│       │           │   ├── LogoutServlet.java
-│       │           │   ├── SystemConfigServlet.java
-│       │           │   ├── TimeLogServlet.java
-│       │           │   └── UserManagementServlet.java
-│       │           └── util
-│       │               ├── PasswordUtil.java
-│       │               └── Validator.java
-│       ├── resources
-│       └── webapp
-│           ├── index.jsp
-│           ├── login.jsp
-│           ├── WEB-INF
-│           │   ├── views
-│           │   │   ├── admin-dashboard.jsp
-│           │   │   ├── system-config.jsp
-│           │   │   ├── time-logs.jsp
-│           │   │   ├── user-dashboard.jsp
-│           │   │   └── user-management.jsp
-│           │   └── web.xml
+ ├── src/
+ │    └── main/
+ │         ├── java/
+ │         │    └── com/timetracker/
+ │         │         ├── model/
+ │         │         ├── dao/
+ │         │         └── servlet/
+ │         └── webapp/
+ │              ├── index.jsp
+ │              ├── login.jsp
+ │              ├── dashboard.jsp
+ │              └── WEB-INF/
+ │                   └── web.xml
+ ├── database/
+ │    ├── schema.sql
+ │    └── connection.sql
+ └── pom.xml
+```
 
-💽 Database Setup
+---
 
-Open MySQL and create the database:
+## 💽 Database Setup
 
+Run the following commands in MySQL:
+
+```sql
 CREATE DATABASE timetracker;
-
-
-Use the database:
-
 USE timetracker;
 
-
-Run the schemas:
-
--- Users Table
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -110,7 +71,6 @@ CREATE TABLE users (
     fullname VARCHAR(100)
 );
 
--- Time Logs Table
 CREATE TABLE time_logs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
@@ -122,90 +82,92 @@ CREATE TABLE time_logs (
     notes TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+```
 
-⚙️ Technologies Used
-Category	Tools
-Language	Java
-Framework	Servlets + JSP
-Build Tool	Maven
-Server	Apache Tomcat
-Database	MySQL
-Architecture	DAO + MVC-style
+---
 
-🔌 Configuration
-1️⃣ Update Database Credentials
+## ⚙️ Technologies Used
 
-In DBConnection.java, change:
+| Category     | Tools           |
+| ------------ | --------------- |
+| Language     | Java            |
+| Framework    | Servlets + JSP  |
+| Build Tool   | Maven           |
+| Server       | Apache Tomcat   |
+| Database     | MySQL           |
+| Architecture | DAO + MVC-style |
 
+---
+
+## 🔌 Database Configuration
+
+Open the file:
+
+`src/main/java/com/timetracker/dao/DBConnection.java`
+
+and update:
+
+```java
 private static final String URL = "jdbc:mysql://localhost:3306/timetracker";
 private static final String USER = "root";
 private static final String PASSWORD = "yourpassword";
+```
 
-🔌 Configuration
-1️⃣ Update Database Credentials
+---
 
-In DBConnection.java, change:
+## ▶️ How to Run the Project
 
-private static final String URL = "jdbc:mysql://localhost:3306/timetracker";
-private static final String USER = "root";
-private static final String PASSWORD = "yourpassword";
+### 1️⃣ Install Required Software
 
-▶️ How to Run the Project
-Step 1 – Install Required Software
+* Java JDK
+* Maven
+* MySQL Server
+* Apache Tomcat
+* VS Code or IntelliJ IDEA
 
-Java JDK
+### 2️⃣ Import the Project
 
-Maven
+* Open the folder `TimeTracker/` in your IDE
 
-MySQL Server
+### 3️⃣ Build
 
-Apache Tomcat
-
-Step 2 – Import Project
-
-Open VS Code or IntelliJ
-
-Open the folder TimeTracker/
-
-Step 3 – Build Project
+```bash
 mvn clean install
+```
 
-Step 4 – Deploy on Tomcat
+### 4️⃣ Deploy
 
-Place the WAR file in tomcat/webapps
+* Copy the generated WAR file into `tomcat/webapps`
+* Start Apache Tomcat
+* Open browser:
 
-Start Tomcat server
-
-Open browser and go to:
-
+```
 http://localhost:8080/TimeTracker/
+```
 
-🧪 Testing
+---
 
-Login using seeded users
+## 🧪 Testing Instructions
 
-Add tasks
+* Login with test credentials
+* Add time logs
+* View dashboard
+* Check database tables for stored logs
 
-View dashboard
+---
 
-Check database logs for entry verification
+## 🛡 Security Notes
 
-🛡 Security Notes
+* Use hashed passwords for production
+* HTTPS recommended
+* Basic input validation included
 
-Passwords should ideally be hashed before storage
+---
 
-HTTPS recommended for production
+## 📈 Future Enhancements
 
-Basic validation implemented for input fields
-
-📈 Future Enhancements
-
-Email reminders
-
-Trend analytics reports
-
-Export logs as PDF
-
-Edit/Delete log entries from UI
-
-Improved UI with modern front-end framework
+* Edit/Delete time logs
+* Email reminders
+* Analytics dashboards
+* Export reports
+* UI modernization (React/Bootstrap/etc.)
