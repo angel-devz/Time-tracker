@@ -1,4 +1,5 @@
-// this code is written by Angel
+// THIS CODE IS WRITTEN BY ANGEL
+
 package com.timetracker.web;
 
 import com.timetracker.model.User;
@@ -42,4 +43,5 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+
 
