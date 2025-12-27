@@ -227,3 +227,10 @@ http://localhost:8080/TimeTracker/
 * Analytics charts
 * Email reminders
 * UI redesign with modern frontend
+
+---
+
+#contribution
+* Angel Lakra
+* Nitu Sashmal
+* Tanishka Malik
