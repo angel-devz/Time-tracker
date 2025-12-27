@@ -1,3 +1,4 @@
+// this code is written by Angel
 package com.timetracker.service;
 
 import com.timetracker.dao.TimeLogDAO;
@@ -35,3 +36,4 @@ public class TimeLogService {
         dao.deleteTimeLog(id);
     }
 }
+
