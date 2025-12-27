@@ -1,3 +1,4 @@
+// this code is written by  Tanishka
 package com.timetracker.web;
 
 import javax.servlet.ServletException;
@@ -14,3 +15,4 @@ public class LogoutServlet extends javax.servlet.http.HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/login");
     }
 }
+
