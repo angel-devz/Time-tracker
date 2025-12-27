@@ -1,4 +1,5 @@
-// this code is written by Nitu
+// THIS CODE IS WRITTEN BY NITU
+
 package com.timetracker.model;
 
 public class User {
@@ -37,4 +38,5 @@ public class User {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 }
+
 
