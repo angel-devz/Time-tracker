@@ -1,4 +1,5 @@
-// this code is wriiten by Angel
+// THIS CODE IS WRITTEN BY ANGEL
+
 package main.java.com.timetracker.dao;
 
 import java.sql.Connection;
@@ -22,4 +23,5 @@ public class DBConnection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
 
