@@ -1,4 +1,5 @@
-// this code is wriiten by Angel
+// THIS CODE IS WRITTEN BY ANGEL
+
 package com.timetracker.dao;
 
 import com.timetracker.model.TimeLog;
@@ -84,4 +85,5 @@ public class TimeLogDAO {
         }
     }
 }
+
 
