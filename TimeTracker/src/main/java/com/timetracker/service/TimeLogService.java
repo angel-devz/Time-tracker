@@ -1,4 +1,5 @@
-// this code is written by Angel
+// THIS CODE IS WRITTEN BY ANGEL
+
 package com.timetracker.service;
 
 import com.timetracker.dao.TimeLogDAO;
@@ -36,4 +37,5 @@ public class TimeLogService {
         dao.deleteTimeLog(id);
     }
 }
+
 
