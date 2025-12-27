@@ -1,3 +1,4 @@
+// this code is wriiten by Angel
 package com.timetracker.dao;
 
 import com.timetracker.model.TimeLog;
@@ -83,3 +84,4 @@ public class TimeLogDAO {
         }
     }
 }
+
