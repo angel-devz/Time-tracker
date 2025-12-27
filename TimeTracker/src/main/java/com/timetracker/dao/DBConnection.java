@@ -1,3 +1,4 @@
+// this code is wriiten by Angel
 package main.java.com.timetracker.dao;
 
 import java.sql.Connection;
@@ -21,3 +22,4 @@ public class DBConnection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
