@@ -1,4 +1,5 @@
-// this code is wriiten by Nitu
+// THIS CODE IS WRITTEN BY NITU
+
 package com.timetracker.model;
 
 import java.time.LocalDateTime;
@@ -44,4 +45,5 @@ public class TimeLog {
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
 }
+
 
