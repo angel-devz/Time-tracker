@@ -1,3 +1,4 @@
+// this code is wriiten by Nitu
 package com.timetracker.model;
 
 import java.time.LocalDateTime;
@@ -43,3 +44,4 @@ public class TimeLog {
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
 }
+
