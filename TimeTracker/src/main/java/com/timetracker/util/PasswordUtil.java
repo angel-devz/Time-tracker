@@ -1,3 +1,4 @@
+// this code is written by Tanishka
 package com.timetracker.util;
 
 import java.nio.charset.StandardCharsets;
@@ -22,3 +23,4 @@ public class PasswordUtil {
         return hash(raw).equals(hashed);
     }
 }
+
