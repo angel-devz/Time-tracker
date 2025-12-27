@@ -1,3 +1,5 @@
+/*THIS CODE IS WRITTEN BY ANGEL*/
+    
 CREATE DATABASE IF NOT EXISTS timetracker;
 USE timetracker;
 
@@ -25,3 +27,4 @@ CREATE TABLE IF NOT EXISTS time_logs (
 
 INSERT INTO users (name, email, password, role) VALUES
 ('Admin','admin@example.com','REPLACE_ME_WITH_HASHED_PASSWORD','ADMIN');
+
