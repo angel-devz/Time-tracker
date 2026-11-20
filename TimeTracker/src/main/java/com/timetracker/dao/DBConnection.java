@@ -1,6 +1,6 @@
 // THIS CODE IS WRITTEN BY ANGEL
 
-package main.java.com.timetracker.dao;
+package com.timetracker.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/timetracker?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "your_mysql_password";
 
     static {
         try {
@@ -23,5 +23,3 @@ public class DBConnection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
-
-
