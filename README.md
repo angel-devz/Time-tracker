@@ -1,236 +1,96 @@
 # Time Tracker – Java Web Application
 
-## 📌 Overview
+A Java web application for recording time spent on tasks. Users log in, add time logs (task, start and end time, notes) and see their logs; admins can see every user's logs. Built with **Java Servlets, JSP, MySQL and Maven**, following a DAO + service layered structure.
 
-The **Time Tracker** is a Java web application that helps users record tasks, track time logs, view productivity reports, and manage work hours. It includes user login, time logging, admin monitoring, and secure database storage. The system is built using Java Servlets and JSP with a MySQL database and Maven build process.
+## Features
 
----
+**Users**
+- Log in and log out (session-based)
+- Add time logs with task name, start/end time and notes
+- Hours are calculated from start and end time
 
-## 🎯 Features
+**Admin**
+- View all users and all time logs from the admin dashboard
 
-### 👤 User Features
+**Under the hood**
+- DAO pattern for database access
+- Service layer between servlets and DAOs
+- Passwords stored as SHA-256 hashes
 
-* Login and Logout
-* Add new time logs
-* View daily time logs
-* Record start & end time
-* Store task notes
+## Tech Stack
 
-### 🛠 Admin Features
+| Category     | Tools                     |
+|--------------|---------------------------|
+| Language     | Java 11                   |
+| Web          | Servlets + JSP (JSTL)     |
+| Build        | Maven                     |
+| Server       | Apache Tomcat 9           |
+| Database     | MySQL 8                   |
 
-* View all users
-* Monitor all time logs
-* Manage system database
-
-### 🧱 System Features
-
-* DAO pattern for database logic
-* Modular MVC-like structure
-* Session-based authentication
-* Fully working CRUD operations
-
----
-
-## 🗂 Project Directory Structure
+## Project Structure
 
 ```
 TimeTracker/
- ├── src/
- │    └── main/
- │         ├── java/
- │         │    └── com/timetracker/
- │         │         ├── model/
- │         │         ├── dao/
- │         │         └── servlet/
- │         └── webapp/
- │              ├── index.jsp
- │              ├── login.jsp
- │              ├── dashboard.jsp
- │              └── WEB-INF/
- │                   └── web.xml
- ├── database/
- │    ├── schema.sql
- │    └── connection.sql
- └── pom.xml
+├── pom.xml
+├── database/
+│   └── schema.sql                 # Creates the database, tables and an admin user
+└── src/main/
+    ├── java/com/timetracker/
+    │   ├── model/                 # User, TimeLog
+    │   ├── dao/                   # DBConnection, UserDAO, TimeLogDAO
+    │   ├── service/               # UserService, TimeLogService
+    │   ├── util/                  # PasswordUtil (SHA-256 hashing)
+    │   └── web/                   # Login, Logout, TimeLog, AdminDashboard servlets
+    └── webapp/WEB-INF/
+        ├── web.xml
+        └── views/                 # admin-dashboard.jsp, user-dashboard.jsp, time-logs.jsp
 ```
 
----
+## Getting Started
 
-## 💽 Database Setup
+### 1. Install
+Java JDK 11+, Maven, MySQL 8 and Apache Tomcat 9.
 
-Run the following commands in MySQL:
-
-```sql
-CREATE DATABASE timetracker;
-USE timetracker;
-
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    fullname VARCHAR(100)
-);
-
-CREATE TABLE time_logs (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    task VARCHAR(200),
-    start_time DATETIME,
-    end_time DATETIME,
-    hours DOUBLE,
-    date_logged DATE,
-    notes TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-```
-
----
-
-## ⚙️ Technologies Used
-
-| Category     | Tools           |
-| ------------ | --------------- |
-| Language     | Java            |
-| Framework    | Servlets + JSP  |
-| Build Tool   | Maven           |
-| Server       | Apache Tomcat   |
-| Database     | MySQL           |
-| Architecture | DAO + MVC-style |
-
----
-
-## 🔌 Database Configuration
-
-File:
-
-`src/main/java/com/timetracker/dao/DBConnection.java`
-
-Update:
-
-```java
-private static final String URL = "jdbc:mysql://localhost:3306/timetracker";
-private static final String USER = "root";
-private static final String PASSWORD = "yourpassword";
-```
-
----
-
-## ▶️ How to Run the Project
-
-### 1️⃣ Install Software
-
-* Java JDK
-* Maven
-* MySQL
-* Apache Tomcat
-* VS Code or IntelliJ IDEA
-
-### 2️⃣ Import Project
-
-* Open the folder `TimeTracker/` in your IDE
-
-### 3️⃣ Build
-
+### 2. Set up the database
 ```bash
-mvn clean install
+mysql -u root -p < TimeTracker/database/schema.sql
+```
+This creates the `timetracker` database with the `users` and `time_logs` tables.
+
+The script adds an admin user with the placeholder password `REPLACE_ME_WITH_HASHED_PASSWORD`. Replace it with the SHA-256 hash of the password you want, for example:
+```sql
+UPDATE users SET password = SHA2('admin123', 256) WHERE email = 'admin@example.com';
 ```
 
-### 4️⃣ Deploy and Start
-
-* Copy the generated WAR file to `tomcat/webapps`
-* Start Tomcat
-* Visit:
-
-```
-http://localhost:8080/TimeTracker/
+### 3. Configure the connection
+Edit `TimeTracker/src/main/java/com/timetracker/dao/DBConnection.java` and set your MySQL username and password:
+```java
+private static final String URL = "jdbc:mysql://localhost:3306/timetracker?useSSL=false&serverTimezone=UTC";
+private static final String USER = "root";
+private static final String PASSWORD = "your_mysql_password";
 ```
 
----
+### 4. Build and deploy
+```bash
+cd TimeTracker
+mvn clean package
+```
+Copy `target/TimeTracker.war` into Tomcat's `webapps/` folder, start Tomcat and open
+`http://localhost:8080/TimeTracker/`.
 
-## 🚀 How to Use (Quick Start)
+Log in with your email (e.g. `admin@example.com`) and password.
 
-1. **Open the website**
+## Roadmap
 
-   ```
-   http://localhost:8080/TimeTracker/
-   ```
+- [ ] Login page (`login.jsp`) and add-time-log form (`add_timelog.jsp`)
+- [ ] User dashboard servlet (`/user/dashboard`)
+- [ ] Edit and delete time logs
+- [ ] Weekly reports and charts
+- [ ] Export to PDF / CSV
+- [ ] Stronger password hashing (BCrypt) and HTTPS
 
-2. **Login**
+## Team
 
-   * Use a valid username and password from the `users` table.
-
-3. **Add Time Logs**
-
-   * Open the *Add Time Log* form.
-   * Enter:
-
-     * Task name
-     * Start time
-     * End time
-     * Notes (optional)
-   * Click **Submit**.
-
-4. **View Recorded Logs**
-
-   * Go to **View Logs**
-   * All entries will display in a table with:
-
-     * Date
-     * Task
-     * Hours
-     * Notes
-
-5. **Admin Access**
-
-   * Admin can:
-
-     * View all users
-     * View all logs
-
-6. **Verify Data in Database**
-
-   * Open MySQL
-
-   * Run:
-
-     ```sql
-     SELECT * FROM users;
-     SELECT * FROM time_logs;
-     ```
-
-   * All stored records will appear in the database.
-
----
-
-## 🧪 Testing Instructions
-
-* Login
-* Add time logs
-* View dashboard
-* Confirm entries stored in MySQL
-
----
-
-## 🔐 Security Notes
-
-* Use hashed passwords for production
-* HTTPS recommended
-* Basic validation included
-
----
-
-## 📈 Future Enhancements
-
-* Edit/Delete logs
-* Weekly reports
-* Export PDF/CSV
-* Analytics charts
-* Email reminders
-* UI redesign with modern frontend
-
----
-
-# contribution
-* Angel Lakra
-* Nitu Sashmal
-* Tanishka Malik
+- Angel Lakra
+- Nitu Sashmal
+- Tanishka Malik
